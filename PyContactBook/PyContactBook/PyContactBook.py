@@ -12,6 +12,18 @@ connection_config = {
         'connect_timeout': 10,
     }
 
+TABLES = {}
+TABLES['dhe_kontakte'] = (
+    "CREATE TABLE `dhe_kontakte` ("
+    "  `kont_no` int(11) NOT NULL AUTO_INCREMENT,"
+    "  `name` varchar(64) NOT NULL,"
+    "  `vorname` varchar(64) NOT NULL,"
+    "  `tel` varchar(64) NOT NULL,"
+    "  `strasse` varchar(64) NOT NULL,"
+    "  `hausnr` varchar(64) NOT NULL,"
+    "  PRIMARY KEY (`kont_no`)"
+    ") ENGINE=InnoDB")
+
 mydb = None
 cursor = None
 
@@ -33,7 +45,7 @@ def isConnected():
 
     cursor = mydb.cursor()
 
-    print("Connected to remote database" + connection_config['host'] + ":" + str(connection_config['port']) + ".")
+    print("Connected to remote database " + connection_config['host'] + ":" + str(connection_config['port']) + ".")
 
 def create_entry():
 
@@ -52,9 +64,32 @@ def create_entry():
     
     return None
 
+def create_table():
+
+    global mydb
+    global cursor
+    global TABLES
+
+    for table_name in TABLES:
+        table_description = TABLES[table_name]
+        try:
+            print("Creating table {}: ".format(table_description), end='')
+            cursor.execute(table_description)
+        except mysql.connector.Error as err:
+            if err.errno == errorcode.ER_TABLE_EXISTS_ERROR:
+                print("already exists.")
+            else:
+                print(err.msg)
+        else:
+            print("OK")
+
+    cursor.close()
+
 def main():
 
     isConnected()
+
+    create_table()
 
     contact[0] = input ("Geben Sie den Vornamen ein: ")
     contact[1] = input ("Geben Sie den Nachnamen ein: ")
