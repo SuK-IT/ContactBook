@@ -30,12 +30,6 @@ sql_statement = None
 user = None
 domain = None
 
-<<<<<<< HEAD
-=======
-# contact =[firstname, lastname, adress, phonenumber, mobilenumber, email]
-contact = ["", "", "", "", "", ""]
-
->>>>>>> dc3e0bf2e66e24f95939e321e5b804133c2d33a3
 def isConnected():
 
     global mydb
@@ -52,8 +46,6 @@ def isConnected():
     cursor = mydb.cursor()
 
     print("Connected to remote database " + connection_config['host'] + ":" + str(connection_config['port']) + ".")
-
-<<<<<<< HEAD
 
 def create_entry_dict():
 
@@ -94,6 +86,7 @@ def create_entry_dict():
              'street': m_Street,
              'mail': m_Mail,
             }
+
 def create_table():
 
     global mydb
@@ -128,8 +121,6 @@ def insert_statement():
     cursor = mydb.cursor()
     cursor.execute(sql_statement)
 
-
-
 def main():
     global mydb
     global cursor
@@ -139,19 +130,16 @@ def main():
     isConnected()
     create_table()
 
-    print(create_entry_dict()['surname'])
-
-=======
-    contact[0] = input ("Geben Sie den Vornamen ein: ")
-    contact[1] = input ("Geben Sie den Nachnamen ein: ")
-    contact[2] = input ("Geben Sie die Adresse ein: ")
-    contact[3] = input ("Geben Sie die Mobilnummer ein: ")
-    contact[4] = input ("Geben Sie die Emailadresse ein: ").strip()
-    user = contact[4][:contact[4].index("@")]
-    domain = contact[4][contact[4].index("@")+1:]
-    output = "Your username is {}and your domain name is {}".format(user,domain)
-    email = "{}@{}".format(user,domain)
-    print(output)
+    #contact[0] = input ("Geben Sie den Vornamen ein: ")
+    #contact[1] = input ("Geben Sie den Nachnamen ein: ")
+    #contact[2] = input ("Geben Sie die Adresse ein: ")
+    #contact[3] = input ("Geben Sie die Mobilnummer ein: ")
+    #contact[4] = input ("Geben Sie die Emailadresse ein: ").strip()
+    #user = contact[4][:contact[4].index("@")]
+    #domain = contact[4][contact[4].index("@")+1:]
+    #output = "Your username is {}and your domain name is {}".format(user,domain)
+    #email = "{}@{}".format(user,domain)
+    #print(output)
 
     make_statement()
     print(sql_statement)
