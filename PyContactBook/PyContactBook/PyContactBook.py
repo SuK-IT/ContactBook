@@ -10,3 +10,7 @@ mydb = mysql.connector.connect(
 )
 
 
+def main():
+    print("Hello World")
+
+main()
