@@ -15,8 +15,8 @@ connection_config = {
 mydb = None
 cursor = None
 
+# contact =[firstname, lastname, adress, phonenumber, mobilenumber, email]
 contact = ["", "", "", "", "", ""]
-
 
 def isConnected():
 
@@ -34,25 +34,6 @@ def isConnected():
     cursor = mydb.cursor()
 
     print("Connected to remote database" + connection_config['host'] + ":" + str(connection_config['port']) + ".")
-
-def create_database(cursor):
-    try:
-        cursor.execute(
-            "CREATE DATABASE {} DEFAULT CHARACTER SET 'utf-8'".format(connection_config['database']))
-    except mysql.connector.Error as err:
-        print("Failed creating database: {}".format(err))
-        exit(1)
-    try:
-        cursor.execute("USE {}".format(connection_config['database']))
-    except mysql.connector.Error as err:
-        print("Database {} does not exist.".format(connection_config['database']))
-        if err.errno == errorcode.ER_BAD_DB_ERROR:
-            create_database(cursor)
-            print("Database {} created successfully.".format(connection_config['database']))
-            cnx.database = connection_config['database']
-        else:
-            print(err)
-            exit(1)
 
 def create_entry():
 
