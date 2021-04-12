@@ -21,6 +21,7 @@ contact = ["", "", "", "", "", ""]
 def isConnected():
 
     global mydb
+    global cursor
 
     while mydb is None:
         print("Could not connected to remote database.\r\nretrying in 2s.")
