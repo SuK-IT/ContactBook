@@ -95,8 +95,7 @@ def main():
     contact[1] = input ("Geben Sie den Nachnamen ein: ")
     contact[2] = input ("Geben Sie die Adresse ein: ")
     contact[3] = input ("Geben Sie die Mobilnummer ein: ")
-    contact[4] = input ("Geben Sie die Mobilnummer ein: ")
-    contact[5] = input ("Geben Sie die Emailadresse ein: ").strip()
+    contact[4] = input ("Geben Sie die Emailadresse ein: ").strip()
     user = contact[5][:contact[5].index("@")]
     domain = contact[5][contact[5].index("@")+1:]
 
