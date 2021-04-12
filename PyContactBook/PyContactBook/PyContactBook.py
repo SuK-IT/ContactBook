@@ -15,7 +15,7 @@ connection_config = {
 mydb = None
 cursor = None
 
-contact =[firstname, lastname, adress, phonenumber, mobilenumber, email]
+contact = ["", "", "", "", "", ""]
 
 
 def isConnected():
@@ -82,3 +82,5 @@ def main():
     contact[5] = input ("Geben Sie die Emailadresse ein: ").strip()
     user = contact[5][:contact[5].index("@")]
     domain = contact[5][contact[5].index("@")+1:]
+
+main()
