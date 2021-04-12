@@ -18,15 +18,17 @@ TABLES['dhe_kontakte'] = (
     "  `kont_no` int(11) NOT NULL AUTO_INCREMENT,"
     "  `name` varchar(64) NOT NULL,"
     "  `vorname` varchar(64) NOT NULL,"
+    "  `adresse` varchar(64) NOT NULL,"
     "  `tel` varchar(64) NOT NULL,"
-    "  `strasse` varchar(64) NOT NULL,"
-    "  `hausnr` varchar(64) NOT NULL,"
+    "  `email` varchar(64) NOT NULL,"
     "  PRIMARY KEY (`kont_no`)"
     ") ENGINE=InnoDB")
 
 mydb = None
 cursor = None
 sql_statement = None
+user = None
+domain = None
 
 # contact =[firstname, lastname, adress, phonenumber, mobilenumber, email]
 contact = ["", "", "", "", "", ""]
@@ -67,14 +69,28 @@ def create_table():
         else:
             print("OK")
 
-    cursor.close()
-
 def make_statement():
     global sql_statement
+    global email
 
-    sql_statement =
+    sql_statement = "INSERT INTO dhe_kontakte (name, vorname, adresse, tel, email) VALUES ('{}', '{}', '{}', '{}', '{}')".format(contact[1],contact[0],contact[2],contact[3],email)
+
+def insert_statement():
+    global mydb
+    global cursor
+    global sql_statement
+
+    mydb = mysql.connector.connect(**connection_config)
+    cursor = mydb.cursor()
+    cursor.execute(sql_statement)
+
+
 
 def main():
+    global mydb
+    global cursor
+    global sql_statement
+    global email
 
     isConnected()
     create_table()
@@ -87,9 +103,12 @@ def main():
     user = contact[4][:contact[4].index("@")]
     domain = contact[4][contact[4].index("@")+1:]
     output = "Your username is {}and your domain name is {}".format(user,domain)
+    email = "{}@{}".format(user,domain)
     print(output)
 
     make_statement()
-    print(
+    print(sql_statement)
+
+    insert_statement()
 
 main()
