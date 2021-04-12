@@ -13,8 +13,7 @@ connection_config = {
     'raise_on_warnings': True
 }
 
-mydb = mysql.connector.connect(**connection_config)
-cnx = mysql.connector.connect(user=connection_config['user'])
+cnx = mysql.connector.connect(**connection_config)
 cursor = cnx.cursor()
 
 def create_database(cursor):
@@ -35,10 +34,6 @@ def create_database(cursor):
         else:
             print(err)
             exit(1)
-
-
-
-
 
 answer = "N"
 
