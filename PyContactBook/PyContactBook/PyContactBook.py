@@ -18,10 +18,6 @@ except:
 
 contact =[firstname, lastname, adress, phonenumber, mobilenumber, email]
 
-def main():
-    isConnected()
-
-
 
 def isConnected():
 
