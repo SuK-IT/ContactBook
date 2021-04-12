@@ -26,6 +26,7 @@ TABLES['dhe_kontakte'] = (
 
 mydb = None
 cursor = None
+sql_statement = None
 
 # contact =[firstname, lastname, adress, phonenumber, mobilenumber, email]
 contact = ["", "", "", "", "", ""]
@@ -46,23 +47,6 @@ def isConnected():
     cursor = mydb.cursor()
 
     print("Connected to remote database " + connection_config['host'] + ":" + str(connection_config['port']) + ".")
-
-def create_entry():
-
-    answer = "N"
-
-    while answer != "Y":
-        name = input("Bitte geben Sie den Nachnamen des neuen Kontakts ein: ")
-        vorname = input("Bitte geben Sie den Vornamen des neuen Kontakts ein: ")
-        tel = input("Bitte geben Sie die Telefonnummer des neuen Kontakts ein: ")
-        strasse = input("Bitte geben Sie den Strassennamen des neuen Kontakts ein: ")
-        hausnr = input("Bitte geben Sie die Hausnummer des neuen Kontakts ein: ")
-        print("Der neue Kontakt lautet: ", vorname, name, tel, strasse, hausnr, " Sind sie damit einverstanden?")
-        answer = input("Bitte mit Y/N bestätigen: ")
-
-    print("Hurra", vorname, name, tel, strasse, hausnr)
-    
-    return None
 
 def create_table():
 
@@ -85,10 +69,14 @@ def create_table():
 
     cursor.close()
 
+def make_statement():
+    global sql_statement
+
+    sql_statement =
+
 def main():
 
     isConnected()
-
     create_table()
 
     contact[0] = input ("Geben Sie den Vornamen ein: ")
@@ -96,7 +84,12 @@ def main():
     contact[2] = input ("Geben Sie die Adresse ein: ")
     contact[3] = input ("Geben Sie die Mobilnummer ein: ")
     contact[4] = input ("Geben Sie die Emailadresse ein: ").strip()
-    user = contact[5][:contact[5].index("@")]
-    domain = contact[5][contact[5].index("@")+1:]
+    user = contact[4][:contact[4].index("@")]
+    domain = contact[4][contact[4].index("@")+1:]
+    output = "Your username is {}and your domain name is {}".format(user,domain)
+    print(output)
+
+    make_statement()
+    print(
 
 main()
