@@ -24,16 +24,16 @@ def isConnected():
     global cursor
 
     while mydb is None:
-        print("Could not connected to remote database.\r\nretrying in 2s.")
-        time.sleep(2);
         try:
             mydb = mysql.connector.connect(**connection_config)
         except:
+            print("Could not connected to remote database.\r\nretrying in 2s.")
+            time.sleep(2);
             mydb = None
 
     cursor = mydb.cursor()
 
-    print("Connected to remote database" + connection_config['host'] + ":" + str(connection_config['port']) + ".")
+    print("Connected to remote database " + connection_config['host'] + ":" + str(connection_config['port']) + ".")
 
 def create_database(cursor):
     try:
@@ -71,17 +71,60 @@ def create_entry():
     
     return None
 
+
+def create_entry_dict():
+
+    m_Answer = "N"
+    m_Surname = ""
+    m_Firstname = ""
+
+    while m_Answer != "Y":
+
+        while m_Surname == "":
+            m_Surname = input("Bitte geben Sie den Nachnamen ein: ")
+
+            if m_Surname == "":
+                print("Der Nachname darf nicht leer sein!")
+                continue
+        
+        while m_Firstname == "":
+            m_Firstname = input("Bitte geben Sie den Vorname ein: ")
+
+            if m_Firstname == "":
+                print("Der Vorname darf nicht leer sein!")
+                continue
+
+        m_Telephone = input("Bitte geben Sie eine Telefonnummer ein (Optional): ")
+        m_Mail = input("Bitte geben Sie eine E-Mail-Adresse ein (Optional): ")
+        m_Street = input("Bitte geben Sie eine Strasse und Hausnummer ein (Optional): ")
+
+        print("Soll der Kontakt", m_Surname, m_Firstname, "erstellt werden?")
+        m_Answer = input("Bitte mit \'Y\' bestaetigen: ")
+
+        if m_Answer != "Y":
+            m_Surname = ""
+            m_Firstname = ""
+
+    return { 'surname': m_Surname,
+             'firstname': m_Firstname,
+             'phone': m_Telephone,
+             'street': m_Street,
+             'mail': m_Mail,
+            }
+
 def main():
 
     isConnected()
 
-    contact[0] = input ("Geben Sie den Vornamen ein: ")
-    contact[1] = input ("Geben Sie den Nachnamen ein: ")
-    contact[2] = input ("Geben Sie die Adresse ein: ")
-    contact[3] = input ("Geben Sie die Mobilnummer ein: ")
-    contact[4] = input ("Geben Sie die Mobilnummer ein: ")
-    contact[5] = input ("Geben Sie die Emailadresse ein: ").strip()
-    user = contact[5][:contact[5].index("@")]
-    domain = contact[5][contact[5].index("@")+1:]
+    print(create_entry_dict()['surname'])
+
+    #contact[0] = input ("Geben Sie den Vornamen ein: ")
+    #contact[1] = input ("Geben Sie den Nachnamen ein: ")
+    #contact[2] = input ("Geben Sie die Adresse ein: ")
+    #contact[3] = input ("Geben Sie die Mobilnummer ein: ")
+    #contact[4] = input ("Geben Sie die Mobilnummer ein: ")
+    #contact[5] = input ("Geben Sie die Emailadresse ein: ").strip()
+    #user = contact[5][:contact[5].index("@")]
+    #domain = contact[5][contact[5].index("@")+1:]
 
 main()
