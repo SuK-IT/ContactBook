@@ -1,5 +1,5 @@
-# author Kevin Kowalski
-# SUK IT
+#author Kevin Kowalski
+#SUK IT
 
 import mysql.connector
 
@@ -12,6 +12,4 @@ mydb = mysql.connector.connect(
 
 def main():
     print("Hello World")
-
-
 main()
