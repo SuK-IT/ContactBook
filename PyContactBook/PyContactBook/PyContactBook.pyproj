@@ -22,6 +22,9 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="PyContactBook_Kivy_Frontend.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="PyContactBook.py" />
   </ItemGroup>
   <ItemGroup>
