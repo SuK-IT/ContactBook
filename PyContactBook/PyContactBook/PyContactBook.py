@@ -3,11 +3,15 @@
 
 import mysql.connector
 
-mydb = mysql.connector.connect(
-  host="localhost",
-  user="yourusername",
-  password="yourpassword"
-)
+connection_config = {
+        'user': 'sukit',
+        'password': '10erWennDu!',
+        'host': 'griefed.de:3306',
+        'database': 'contact',
+        'raise_on_warnings': True
+    }
+
+mydb = mysql.connector.connect(**connection_config)
 
 
 def main():
