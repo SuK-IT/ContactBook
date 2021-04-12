@@ -83,6 +83,7 @@ def insert_statement():
     mydb = mysql.connector.connect(**connection_config)
     cursor = mydb.cursor()
     cursor.execute(sql_statement)
+    mydb.commit()
 
 def main():
     global mydb
