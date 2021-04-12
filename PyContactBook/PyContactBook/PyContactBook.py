@@ -84,8 +84,6 @@ def insert_statement():
     cursor = mydb.cursor()
     cursor.execute(sql_statement)
 
-
-
 def main():
     global mydb
     global cursor
