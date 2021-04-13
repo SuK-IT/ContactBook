@@ -60,17 +60,3 @@ def connect_to_database():
 
     cursor = mydb.cursor(buffered=True)
     print("[INFO   ] [PyContacBook]\r\nConnected to remote database " + connection_config['host'] + ":" + str(connection_config['port']) + ".")
-
-
-
-#TABLES = {}
-#TABLES['dhe_kontakte'] = (
-#    "CREATE TABLE `dhe_kontakte` ("
-#    "  `kont_no` int(11) NOT NULL AUTO_INCREMENT,"
-#    "  `name` varchar(64) NOT NULL,"
-#    "  `vorname` varchar(64) NOT NULL,"
-#    "  `adresse` varchar(64) NOT NULL,"
-#    "  `tel` varchar(64) NOT NULL,"
-#    "  `email` varchar(64) NOT NULL,"
-#    "  PRIMARY KEY (`kont_no`)"
-#    ") ENGINE=InnoDB")
