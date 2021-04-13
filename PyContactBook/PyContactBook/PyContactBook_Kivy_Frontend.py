@@ -1,5 +1,5 @@
 import kivy
-kivy.require('1.0.6') # replace with your current kivy version !
+kivy.require('1.0.6')
 
 from kivy.app import App
 from kivy.uix.widget import Widget
@@ -30,7 +30,7 @@ class MyGrid(Widget):
            
 
         else:
-            statement = PyContactBook.make_insert_statement({ 
+            PyContactBook.CreateContact({ 
         
                 'firstname': self.m_Firstname.text,
                 'surname': self.m_Surname.text,
@@ -38,7 +38,6 @@ class MyGrid(Widget):
                 'tel': self.m_Telephone.text,
                 'mail': self.m_Mail.text
                 })
-            PyContactBook.execute_statement(statement)
             #print("Vorname: ", self.m_Firstname.text, "Name: ", self.m_Surname.text, "Telefon: ", self.m_Telephone.text, "E-Mail: ", self.m_Mail.text, "Straße: ", self.m_Street.text)
             #Aufräumen, Clear + Auf weiß wechseln
             white = (1,1,1,1)
