@@ -3,6 +3,8 @@ import mysql.connector
 import time
 import json
 
+# GLOBALS
+
 connection_config = { }
 
 TABLES = {}
@@ -19,9 +21,8 @@ TABLES['dhe_kontakte'] = (
 
 mydb = None
 cursor = None
-sql_statement = None
-user = None
-domain = None
+
+# FUNCTION DEFINITIONS
 
 def isConnected():
 
@@ -40,79 +41,18 @@ def isConnected():
 
     print("Connected to remote database " + connection_config['host'] + ":" + str(connection_config['port']) + ".")
 
-def create_entry_dict():
+def make_statement(dict):
+    global sql_statement
+    
+    return "INSERT INTO dhe_kontakte (name, vorname, adresse, tel, email) VALUES ('{}', '{}', '{}', '{}', '{}')".format(dict['firstname'], dict['surname'], dict['address'], dict['tel'], dict['mail'])
 
-    m_Answer = "N"
-    m_Surname = ""
-    m_Firstname = ""
-
-    while m_Answer != "Y":
-
-        while m_Surname == "":
-            m_Surname = input("Bitte geben Sie den Nachnamen ein: ")
-
-            if m_Surname == "":
-                print("Der Nachname darf nicht leer sein!")
-                continue
-        
-        while m_Firstname == "":
-            m_Firstname = input("Bitte geben Sie den Vorname ein: ")
-
-            if m_Firstname == "":
-                print("Der Vorname darf nicht leer sein!")
-                continue
-
-        m_Telephone = input("Bitte geben Sie eine Telefonnummer ein (Optional): ")
-        m_Mail = input("Bitte geben Sie eine E-Mail-Adresse ein (Optional): ")
-        m_Street = input("Bitte geben Sie eine Strasse und Hausnummer ein (Optional): ")
-
-        print("Soll der Kontakt", m_Surname, m_Firstname, "erstellt werden?")
-        m_Answer = input("Bitte mit \'Y\' bestaetigen: ")
-
-        if m_Answer != "Y":
-            m_Surname = ""
-            m_Firstname = ""
-
-    return { 'surname': m_Surname,
-             'firstname': m_Firstname,
-             'phone': m_Telephone,
-             'street': m_Street,
-             'mail': m_Mail,
-            }
-
-def create_table():
-
+def insert_statement(statement):
     global mydb
     global cursor
-    global TABLES
-
-    for table_name in TABLES:
-        table_description = TABLES[table_name]
-        try:
-            print("Creating table {}: ".format(table_description), end='')
-            cursor.execute(table_description)
-        except mysql.connector.Error as err:
-            if err.errno == errorcode.ER_TABLE_EXISTS_ERROR:
-                print("already exists.")
-            else:
-                print(err.msg)
-        else:
-            print("OK")
-
-def make_statement():
-    global sql_statement
-    global email
-
-    sql_statement = "INSERT INTO dhe_kontakte (name, vorname, adresse, tel, email) VALUES ('{}', '{}', '{}', '{}', '{}')".format(contact[1],contact[0],contact[2],contact[3],email)
-
-def insert_statement():
-    global mydb
-    global cursor
-    global sql_statement
 
     mydb = mysql.connector.connect(**connection_config)
     cursor = mydb.cursor()
-    cursor.execute(sql_statement)
+    cursor.execute(statement)
 
 def getConnectionConfig():
 
@@ -131,29 +71,21 @@ def saveConnectionConfig(object):
 def main():
     global mydb
     global cursor
-    global sql_statement
-    global email
     global connection_config
 
     connection_config = getConnectionConfig()
 
     isConnected()
-    create_table()
 
-    #contact[0] = input ("Geben Sie den Vornamen ein: ")
-    #contact[1] = input ("Geben Sie den Nachnamen ein: ")
-    #contact[2] = input ("Geben Sie die Adresse ein: ")
-    #contact[3] = input ("Geben Sie die Mobilnummer ein: ")
-    #contact[4] = input ("Geben Sie die Emailadresse ein: ").strip()
-    #user = contact[4][:contact[4].index("@")]
-    #domain = contact[4][contact[4].index("@")+1:]
-    #output = "Your username is {}and your domain name is {}".format(user,domain)
-    #email = "{}@{}".format(user,domain)
-    #print(output)
+    print(make_statement({ 
+        
+        'firstname': 'Vorname',
+        'surname': 'Nachname',
+        'address': 'Adresse',
+        'tel': 'Telefonnummer',
+        'mail': 'E-Mail-Adresse'
 
-    make_statement()
-    print(sql_statement)
+        }))
 
-    insert_statement()
-
+# EXECUTE APP
 main()
