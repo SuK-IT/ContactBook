@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>6bfdb02b-42a2-4468-9f32-855c503bdd94</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>PyContactBook.py</StartupFile>
+    <StartupFile>PyContactBook_Kivy_Frontend.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -22,6 +22,9 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="PyContactBook_Kivy_Frontend.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="PyContactBook.py" />
   </ItemGroup>
   <ItemGroup>

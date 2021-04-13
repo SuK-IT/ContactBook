@@ -3,6 +3,7 @@ import mysql.connector
 import time
 import json
 
+
 # GLOBALS
 
 connection_config = { }
@@ -85,4 +86,3 @@ def main():
     #execute_statement(statement)
 
 # EXECUTE APP
-main()
