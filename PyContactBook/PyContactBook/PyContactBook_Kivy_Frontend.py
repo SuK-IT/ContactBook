@@ -70,6 +70,9 @@ class MySearch(Screen):
 
     def search(self):
         print(self.m_Search.text)
+    
+    def update(self):
+        print(self.m_Search.text)
 
 
 class WindowManager(ScreenManager):

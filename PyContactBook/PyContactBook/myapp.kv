@@ -118,30 +118,32 @@ WindowManager:
     GridLayout:
         cols:1
 
+        Label:
+            #placeholder
+
         TextInput:
             id: searchquery
-            size_hint: 0.8, 0.2
+            size_hint: 0.8, 0.4
             pos_hint: {"x":0.1, "y":0.1}
             write_tab: False
             multiline: False
             on_text_validate: root.search()
+            on_text: root.update()
 
         Label:
             #placeholder
+        
 
         Button:
-            size_hint: 0.8, 0.2
+            size_hint: 0.8, 0.4
             pos_hint: {"x":0.1, "y":0.1}
             text: "Suche"
             on_press: root.search()
 
-        Label:
-            size_hint: 0.8, 0.2
-            pos_hint: {"x":0.1, "y":0.1}
-            #placeholder
+
 
         Button:
-            size_hint: 0.8, 0.2
+            size_hint: 0.8, 0.4
             pos_hint: {"x":0.1, "y":0.1}
             text: "Kontakt einpflegen"
             on_release:
