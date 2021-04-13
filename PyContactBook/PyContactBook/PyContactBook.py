@@ -41,14 +41,15 @@ def isConnected():
 
     print("Connected to remote database " + connection_config['host'] + ":" + str(connection_config['port']) + ".")
 
-def make_statement(dict):
+def make_insert_statement(dict):
 
     return "INSERT INTO dhe_kontakte (name, vorname, adresse, tel, email) VALUES ('{}', '{}', '{}', '{}', '{}')".format(dict['firstname'], dict['surname'], dict['address'], dict['tel'], dict['mail'])
 
-def insert_statement(statement):
-    print(statement)
-    cursor = mydb.cursor()
+def execute_statement(statement):
+
     cursor.execute(statement)
+    mydb.commit()
+
 
 def getConnectionConfig():
 
@@ -71,17 +72,17 @@ def main():
 
     isConnected()
 
-    statement = make_statement({ 
+    make_insert_statement = make_statement({ 
         
-        'firstname': 'FTest1304',
-        'surname': 'NTest1304',
-        'address': 'ATest1304',
-        'tel': 'TTest1304',
-        'mail': 'ETest1304'
+        'firstname': 'fsfd',
+        'surname': 'NTessdfgsggt1304',
+        'address': 'dgdgdfg',
+        'tel': 'fdgdfg',
+        'mail': 'ghfjmfhfd'
 
         })
 
-    insert_statement(statement)
+    execute_statement(statement)
 
 # EXECUTE APP
 main()
