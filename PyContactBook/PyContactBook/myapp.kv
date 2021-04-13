@@ -1,9 +1,25 @@
 # Filename: myapp.kv
+WindowManager:
+    MyGrid:
+    MySearch:
 
+<MainWindow>:
+    #name: "main"
+    GridLayout:
+        cols:1
+        
+        
+        Button:
+            text:"Go to Screen2"
+            on_press:
+                root.manager.transition.direction = "left"
+                root.manager.transition.duration = 1
+                root.manager.current = "second"
 
-
+<SecondWindow>:
+    #name: "second"
 <MyGrid>:
-    
+    name: "main"
 
     m_Firstname: firstname  # Global variable name references the id firstname
     m_Surname: name  # Global variable name references the id name
@@ -13,14 +29,17 @@
     m_Required: required # Global variable Sternchen references the id required
     m_First_Req: firstreq 
     m_Sur_Req: surreq 
-    m_Tel_Req: telreq 
+    m_Tel_Req: telreq
+    
 
 
 
     GridLayout:
         cols:1
-        size: root.width - 200, root.height -200
-        pos: 100, 100
+        
+
+        Label:
+            #placeholder
 
         GridLayout:
             cols:2
@@ -78,6 +97,7 @@
                 multiline: False
                 on_text_validate: root.btn()
         
+            
         Label:
             id: required
             text: "Die Felder mit * sind notwendig."
@@ -88,3 +108,39 @@
         Button:
             text:"Speichern" #utf-8
             on_press: root.btn()
+
+        Button:
+            text:"Kontaktsuche"
+            on_press:
+                root.manager.transition.direction = "left"
+                root.manager.transition.duration = 1
+                root.manager.current = "second"
+
+<MySearch>:
+    name: "second"
+    
+    m_Search: searchquery
+
+    GridLayout:
+        cols:1
+
+        TextInput:
+            id: searchquery
+            write_tab: False
+            multiline: False
+            on_text_validate: root.search()
+
+        Button:
+            
+            text: "Suche"
+            on_press: root.search()
+
+        Button:
+            
+            text: "Kontakt einpflegen"
+            on_release:
+                app.root.current = "main"
+                root.manager.transition.direction = "right"
+        
+
+        
