@@ -1,16 +1,9 @@
 from errno import errorcode
 import mysql.connector
 import time
+import json
 
-connection_config = {
-        'user': 'sukit',
-        'password': '10erWennDu!',
-        'host': 'griefed.de',
-        'database': 'contact',
-        'raise_on_warnings': True,
-        'port': 3306,
-        'connect_timeout': 10,
-    }
+connection_config = { }
 
 TABLES = {}
 TABLES['dhe_kontakte'] = (
@@ -121,11 +114,28 @@ def insert_statement():
     cursor = mydb.cursor()
     cursor.execute(sql_statement)
 
+def getConnectionConfig():
+
+    with open("connectiong_config.json", "r") as m_File:
+        m_JsonString = m_File.read()
+        m_Json = json.loads(m_JsonString)
+        return m_Json
+
+def saveConnectionConfig(object):
+
+    m_ConfigString = json.dumps(object)
+    print(m_ConfigString)
+    with open("connectiong_config.json", "w") as m_File:
+        m_File.write(m_ConfigString)
+
 def main():
     global mydb
     global cursor
     global sql_statement
     global email
+    global connection_config
+
+    connection_config = getConnectionConfig()
 
     isConnected()
     create_table()
