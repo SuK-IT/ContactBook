@@ -1,5 +1,5 @@
 import kivy
-kivy.require('1.0.6') # replace with your current kivy version !
+kivy.require('2.0.0') # replace with your current kivy version !
 
 from kivy.app import App
 from kivy.lang import Builder
@@ -13,6 +13,7 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.uix.widget import Widget
 from kivy.properties import ObjectProperty
 from kivy.graphics import Color, Rectangle
+from kivy.uix.recycleview import RecycleView
 import PyContactBook
 
 
@@ -40,7 +41,7 @@ class MyGrid(Screen):
            
 
         else:
-            statement = PyContactBook.make_insert_statement({ 
+            PyContactBook.CreateContact({ 
         
                 'firstname': self.m_Firstname.text,
                 'surname': self.m_Surname.text,
@@ -48,8 +49,6 @@ class MyGrid(Screen):
                 'tel': self.m_Telephone.text,
                 'mail': self.m_Mail.text
                 })
-            PyContactBook.execute_statement(statement)
-            #print("Vorname: ", self.m_Firstname.text, "Name: ", self.m_Surname.text, "Telefon: ", self.m_Telephone.text, "E-Mail: ", self.m_Mail.text, "Straße: ", self.m_Street.text)
             #Aufräumen, Clear + Auf weiß wechseln
             white = (1,1,1,1)
             black = (0,0,0,0)
@@ -68,15 +67,8 @@ class MySearch(Screen):
     m_Search = ObjectProperty(None)
 
     def search(self):
-        print('Suche')
+        print(self.m_Search.text)
 
-class MainWindow(Screen):
-    pass
-
-
-
-class SecondWindow(Screen):
-    pass
 
 class WindowManager(ScreenManager):
     pass
@@ -85,10 +77,6 @@ kv = Builder.load_file("myapp.kv")
 class MyApp(App):
     def build(self):
         self.title ="Kontakt-Manager"
-        
-        
-
-        PyContactBook.main()
         return kv
         
     

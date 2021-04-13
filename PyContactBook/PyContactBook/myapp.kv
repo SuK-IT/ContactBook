@@ -3,21 +3,7 @@ WindowManager:
     MyGrid:
     MySearch:
 
-<MainWindow>:
-    #name: "main"
-    GridLayout:
-        cols:1
-        
-        
-        Button:
-            text:"Go to Screen2"
-            on_press:
-                root.manager.transition.direction = "left"
-                root.manager.transition.duration = 1
-                root.manager.current = "second"
 
-<SecondWindow>:
-    #name: "second"
 <MyGrid>:
     name: "main"
 
@@ -39,6 +25,8 @@ WindowManager:
         
 
         Label:
+            size_hint: 0.8, 0.2
+            pos_hint: {"x":0.1, "y":0.1}
             #placeholder
 
         GridLayout:
@@ -100,6 +88,8 @@ WindowManager:
             
         Label:
             id: required
+            size_hint: 0.8, 0.2
+            pos_hint: {"x":0.1, "y":0.1}
             text: "Die Felder mit * sind notwendig."
             color: (0,0,0,0)
             
@@ -107,10 +97,14 @@ WindowManager:
 
         Button:
             text:"Speichern" #utf-8
+            size_hint: 0.8, 0.2
+            pos_hint: {"x":0.1, "y":0.1}
             on_press: root.btn()
 
         Button:
             text:"Kontaktsuche"
+            size_hint: 0.8, 0.2
+            pos_hint: {"x":0.1, "y":0.1}
             on_press:
                 root.manager.transition.direction = "left"
                 root.manager.transition.duration = 1
@@ -126,21 +120,36 @@ WindowManager:
 
         TextInput:
             id: searchquery
+            size_hint: 0.8, 0.2
+            pos_hint: {"x":0.1, "y":0.1}
             write_tab: False
             multiline: False
             on_text_validate: root.search()
 
+        Label:
+            #placeholder
+
         Button:
-            
+            size_hint: 0.8, 0.2
+            pos_hint: {"x":0.1, "y":0.1}
             text: "Suche"
             on_press: root.search()
 
+        Label:
+            size_hint: 0.8, 0.2
+            pos_hint: {"x":0.1, "y":0.1}
+            #placeholder
+
         Button:
-            id: searchquery
+            size_hint: 0.8, 0.2
+            pos_hint: {"x":0.1, "y":0.1}
             text: "Kontakt einpflegen"
             on_release:
                 app.root.current = "main"
                 root.manager.transition.direction = "right"
-        
+        Label:
+            size_hint: 0.8, 0.2
+            pos_hint: {"x":0.1, "y":0.1}
+            #placeholder
 
         
