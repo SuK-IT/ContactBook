@@ -73,17 +73,17 @@ def main():
 
     isConnected()
 
-    make_insert_statement = make_statement({ 
+    #statement = make_insert_statement({ 
         
-        'firstname': 'fsfd',
-        'surname': 'NTessdfgsggt1304',
-        'address': 'dgdgdfg',
-        'tel': 'fdgdfg',
-        'mail': 'ghfjmfhfd'
+    #    'firstname': 'fsfd',
+    #    'surname': 'NTessdfgsggt1304',
+    #    'address': 'dgdgdfg',
+    #    'tel': 'fdgdfg',
+    #    'mail': 'ghfjmfhfd'
 
-        })
+    #    })
 
-    execute_statement(statement)
+    #execute_statement(statement)
 
 # EXECUTE APP
 main()
