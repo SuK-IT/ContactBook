@@ -2,6 +2,7 @@ from errno import errorcode
 import mysql.connector
 import time
 import json
+import PyContactBook_Kivy_Frontend
 
 connection_config = { }
 

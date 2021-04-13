@@ -1,0 +1,90 @@
+# Filename: myapp.kv
+
+
+
+<MyGrid>:
+    
+
+    m_Firstname: firstname  # Global variable name references the id firstname
+    m_Surname: name  # Global variable name references the id name
+    m_Mail: email  # Global variable email references the id email
+    m_Telephone: telephone  # Global variable email references the id telephone
+    m_Street: street  # Global variable street references the id street
+    m_Required: required # Global variable Sternchen references the id required
+    m_First_Req: firstreq 
+    m_Sur_Req: surreq 
+    m_Tel_Req: telreq 
+
+
+
+    GridLayout:
+        cols:1
+        size: root.width - 200, root.height -200
+        pos: 100, 100
+
+        GridLayout:
+            cols:2
+            Label:
+                id: firstreq
+                
+                text: "* Vorname: "
+
+            TextInput:
+                id: firstname
+                write_tab: False
+                multiline: False
+                on_text_validate: root.btn()
+                
+
+            Label:
+                id: surreq
+                text: "* Name: "
+
+
+            TextInput:
+                id: name
+                write_tab: False
+                multiline: False
+                on_text_validate: root.btn()
+            
+
+            Label:
+                id: telreq
+                text: "* Telefon: "
+
+            TextInput:
+                id: telephone
+                write_tab: False
+                multiline: False
+                on_text_validate: root.btn()
+
+            Label:
+                text: "Email: "
+
+            TextInput:
+                id: email
+                write_tab: False
+                multiline: False
+                on_text_validate: root.btn()
+
+            
+
+            Label:
+                text: "Adresse: "
+
+            TextInput:
+                id: street
+                write_tab: False
+                multiline: False
+                on_text_validate: root.btn()
+        
+        Label:
+            id: required
+            text: "Die Felder mit * sind notwendig."
+            color: (0,0,0,0)
+            
+             
+
+        Button:
+            text:"Speichern" #utf-8
+            on_press: root.btn()
