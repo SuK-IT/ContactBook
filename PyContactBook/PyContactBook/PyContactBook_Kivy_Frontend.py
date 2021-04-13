@@ -11,7 +11,7 @@ from kivy.uix.popup import Popup
 from kivy.uix.widget import Widget
 from kivy.properties import ObjectProperty
 from kivy.graphics import Color, Rectangle
-
+import PyContactBook
 
 
 class MyGrid(Widget):
@@ -37,8 +37,16 @@ class MyGrid(Widget):
            
 
         else:
-
-            print("Vorname: ", self.m_Firstname.text, "Name: ", self.m_Surname.text, "Telefon: ", self.m_Telephone.text, "E-Mail: ", self.m_Mail.text, "Straße: ", self.m_Street.text)
+            statement = PyContactBook.make_insert_statement({ 
+        
+                'firstname': self.m_Firstname.text,
+                'surname': self.m_Surname.text,
+                'address': self.m_Street.text,
+                'tel': self.m_Telephone.text,
+                'mail': self.m_Mail.text
+                })
+            PyContactBook.execute_statement(statement)
+            #print("Vorname: ", self.m_Firstname.text, "Name: ", self.m_Surname.text, "Telefon: ", self.m_Telephone.text, "E-Mail: ", self.m_Mail.text, "Straße: ", self.m_Street.text)
             #Aufräumen, Clear + Auf weiß wechseln
             white = (1,1,1,1)
             black = (0,0,0,0)
@@ -60,7 +68,9 @@ class MyGrid(Widget):
 class MyApp(App):
     def build(self):
         self.title ="Kontakt-Manager"
+        PyContactBook.main()
         return MyGrid()
+        
     
 
 if __name__ == "__main__":
