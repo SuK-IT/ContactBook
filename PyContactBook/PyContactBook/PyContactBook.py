@@ -1,16 +1,9 @@
 from errno import errorcode
 import mysql.connector
 import time
+import json
 
-connection_config = {
-        'user': 'sukit',
-        'password': '10erWennDu!',
-        'host': 'griefed.de',
-        'database': 'contact',
-        'raise_on_warnings': True,
-        'port': 3306,
-        'connect_timeout': 10,
-    }
+connection_config = { }
 
 TABLES = {}
 TABLES['dhe_kontakte'] = (
@@ -30,25 +23,62 @@ sql_statement = None
 user = None
 domain = None
 
-# contact =[firstname, lastname, adress, phonenumber, mobilenumber, email]
-contact = ["", "", "", "", "", ""]
-
 def isConnected():
 
     global mydb
     global cursor
 
     while mydb is None:
-        print("Could not connected to remote database.\r\nretrying in 2s.")
-        time.sleep(2);
         try:
             mydb = mysql.connector.connect(**connection_config)
         except:
+            print("Could not connected to remote database.\r\nretrying in 2s.")
+            time.sleep(2);
             mydb = None
 
     cursor = mydb.cursor()
 
     print("Connected to remote database " + connection_config['host'] + ":" + str(connection_config['port']) + ".")
+
+def create_entry_dict():
+
+    m_Answer = "N"
+    m_Surname = ""
+    m_Firstname = ""
+
+    while m_Answer != "Y":
+
+        while m_Surname == "":
+            m_Surname = input("Bitte geben Sie den Nachnamen ein: ")
+
+            if m_Surname == "":
+                print("Der Nachname darf nicht leer sein!")
+                continue
+        
+        while m_Firstname == "":
+            m_Firstname = input("Bitte geben Sie den Vorname ein: ")
+
+            if m_Firstname == "":
+                print("Der Vorname darf nicht leer sein!")
+                continue
+
+        m_Telephone = input("Bitte geben Sie eine Telefonnummer ein (Optional): ")
+        m_Mail = input("Bitte geben Sie eine E-Mail-Adresse ein (Optional): ")
+        m_Street = input("Bitte geben Sie eine Strasse und Hausnummer ein (Optional): ")
+
+        print("Soll der Kontakt", m_Surname, m_Firstname, "erstellt werden?")
+        m_Answer = input("Bitte mit \'Y\' bestaetigen: ")
+
+        if m_Answer != "Y":
+            m_Surname = ""
+            m_Firstname = ""
+
+    return { 'surname': m_Surname,
+             'firstname': m_Firstname,
+             'phone': m_Telephone,
+             'street': m_Street,
+             'mail': m_Mail,
+            }
 
 def create_table():
 
@@ -83,27 +113,43 @@ def insert_statement():
     mydb = mysql.connector.connect(**connection_config)
     cursor = mydb.cursor()
     cursor.execute(sql_statement)
-    mydb.commit()
+
+def getConnectionConfig():
+
+    with open("connectiong_config.json", "r") as m_File:
+        m_JsonString = m_File.read()
+        m_Json = json.loads(m_JsonString)
+        return m_Json
+
+def saveConnectionConfig(object):
+
+    m_ConfigString = json.dumps(object)
+    print(m_ConfigString)
+    with open("connectiong_config.json", "w") as m_File:
+        m_File.write(m_ConfigString)
 
 def main():
     global mydb
     global cursor
     global sql_statement
     global email
+    global connection_config
+
+    connection_config = getConnectionConfig()
 
     isConnected()
     create_table()
 
-    contact[0] = input ("Geben Sie den Vornamen ein: ")
-    contact[1] = input ("Geben Sie den Nachnamen ein: ")
-    contact[2] = input ("Geben Sie die Adresse ein: ")
-    contact[3] = input ("Geben Sie die Mobilnummer ein: ")
-    contact[4] = input ("Geben Sie die Emailadresse ein: ").strip()
-    user = contact[4][:contact[4].index("@")]
-    domain = contact[4][contact[4].index("@")+1:]
-    output = "Your username is {}and your domain name is {}".format(user,domain)
-    email = "{}@{}".format(user,domain)
-    print(output)
+    #contact[0] = input ("Geben Sie den Vornamen ein: ")
+    #contact[1] = input ("Geben Sie den Nachnamen ein: ")
+    #contact[2] = input ("Geben Sie die Adresse ein: ")
+    #contact[3] = input ("Geben Sie die Mobilnummer ein: ")
+    #contact[4] = input ("Geben Sie die Emailadresse ein: ").strip()
+    #user = contact[4][:contact[4].index("@")]
+    #domain = contact[4][contact[4].index("@")+1:]
+    #output = "Your username is {}and your domain name is {}".format(user,domain)
+    #email = "{}@{}".format(user,domain)
+    #print(output)
 
     make_statement()
     print(sql_statement)

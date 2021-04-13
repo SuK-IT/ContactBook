@@ -1,0 +1,9 @@
+diff a/PyContactBook/PyContactBook/PyContactBook.py b/PyContactBook/PyContactBook/PyContactBook.py	(rejected hunks)
+@@ -139,6 +139,7 @@
+     isConnected()
+     create_table()
+ 
++<<<<<<< HEAD
+     print(create_entry_dict()['surname'])
+ 
+ =======
