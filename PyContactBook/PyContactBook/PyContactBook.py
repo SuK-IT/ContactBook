@@ -2,7 +2,7 @@ from errno import errorcode
 import mysql.connector
 import time
 import json
-import PyContactBook_Kivy_Frontend
+
 
 # GLOBALS
 
@@ -86,4 +86,3 @@ def main():
     #execute_statement(statement)
 
 # EXECUTE APP
-main()
