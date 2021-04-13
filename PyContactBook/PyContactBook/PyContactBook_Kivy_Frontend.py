@@ -4,6 +4,11 @@ kivy.require('1.0.6')
 from kivy.app import App
 from kivy.uix.widget import Widget
 from kivy.properties import ObjectProperty
+<<<<<<< HEAD
+=======
+from kivy.graphics import Color, Rectangle
+from kivy.uix.recycleview import RecycleView
+>>>>>>> c4a7a7c4089e96fc8d8941c887416673e7e4f2ee
 import PyContactBook
 
 
@@ -52,10 +57,13 @@ class MyGrid(Widget):
             self.m_Mail.text = ""
             self.m_Street.text = ""
 
+<<<<<<< HEAD
 
 
  
 
+=======
+>>>>>>> c4a7a7c4089e96fc8d8941c887416673e7e4f2ee
 
 class MyApp(App):
     def build(self):
