@@ -41,7 +41,7 @@ class MyGrid(Screen):
            
 
         else:
-            statement = PyContactBook.make_insert_statement({ 
+            PyContactBook.CreateContact({ 
         
                 'firstname': self.m_Firstname.text,
                 'surname': self.m_Surname.text,
@@ -49,8 +49,6 @@ class MyGrid(Screen):
                 'tel': self.m_Telephone.text,
                 'mail': self.m_Mail.text
                 })
-            PyContactBook.execute_statement(statement)
-            #print("Vorname: ", self.m_Firstname.text, "Name: ", self.m_Surname.text, "Telefon: ", self.m_Telephone.text, "E-Mail: ", self.m_Mail.text, "Straße: ", self.m_Street.text)
             #Aufräumen, Clear + Auf weiß wechseln
             white = (1,1,1,1)
             black = (0,0,0,0)
@@ -82,10 +80,6 @@ kv = Builder.load_file("myapp.kv")
 class MyApp(App):
     def build(self):
         self.title ="Kontakt-Manager"
-        
-        
-
-        PyContactBook.main()
         return kv
         
     

@@ -128,3 +128,5 @@ dmypy.json
 # Pyre type checker
 .pyre/
 PyContactBook/PyContactBook/connectiong_config.json
+PyContactBook/.vs/PyContactBook/v16/.suo
+PyContactBook/PyContactBook/connection_config.json
