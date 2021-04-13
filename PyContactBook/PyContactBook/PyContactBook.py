@@ -1,4 +1,3 @@
-from errno import errorcode
 import mysql.connector
 import time
 import json
@@ -54,7 +53,7 @@ def execute_statement(statement):
 
 def getConnectionConfig():
 
-    with open("connectiong_config.json", "r") as m_File:
+    with open("connection_config.json", "r") as m_File:
         m_JsonString = m_File.read()
         m_Json = json.loads(m_JsonString)
         return m_Json
