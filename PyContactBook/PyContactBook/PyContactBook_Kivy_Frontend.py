@@ -13,6 +13,7 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.uix.widget import Widget
 from kivy.properties import ObjectProperty
 from kivy.graphics import Color, Rectangle
+from kivy.uix.recycleview import RecycleView
 import PyContactBook
 
 
@@ -70,13 +71,6 @@ class MySearch(Screen):
     def search(self):
         print(self.m_Search.text)
 
-class MainWindow(Screen):
-    pass
-
-
-
-class SecondWindow(Screen):
-    pass
 
 class WindowManager(ScreenManager):
     pass
