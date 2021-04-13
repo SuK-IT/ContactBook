@@ -54,7 +54,7 @@ def execute_statement(statement):
 
 def getConnectionConfig():
 
-    with open("connectiong_config.json", "r") as m_File:
+    with open("connection_config.json", "r") as m_File:
         m_JsonString = m_File.read()
         m_Json = json.loads(m_JsonString)
         return m_Json
@@ -63,7 +63,7 @@ def saveConnectionConfig(object):
 
     m_ConfigString = json.dumps(object)
     print(m_ConfigString)
-    with open("connectiong_config.json", "w") as m_File:
+    with open("connection_config.json", "w") as m_File:
         m_File.write(m_ConfigString)
 
 def main():
