@@ -6,9 +6,9 @@ mydb = None
 cursor = None
 connection_config = None
 
-def make_query_statement(vorname):
+def make_query_statement(name):
 
-    return "SELECT * FROM dhe_kontakte WHERE name=\'" + vorname + "\'"
+    return "SELECT * FROM dhe_kontakte WHERE name LIKE \'%" + name + "%\'"
 
 def make_insert_statement(dict):
 
