@@ -3,6 +3,7 @@ kivy.require('2.0.0') # replace with your current kivy version !
 
 from kivy.app import App
 from kivy.lang import Builder
+from kivy.uix.dropdown import DropDown
 from kivy.uix.label import Label
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.gridlayout import GridLayout
@@ -62,15 +63,40 @@ class MyGrid(Screen):
             self.m_Mail.text = ""
             self.m_Street.text = ""
     
+class CustomDropDown(DropDown):
+    pass
 
 class MySearch(Screen):
     m_Search = ObjectProperty(None)
-
-    def search(self):
-        print(self.m_Search.text)
+    m_Spinner = ObjectProperty(None)
     
+    
+    
+
+    
+    
+    def search(self):
+        
+        allusers = PyContactBook.GetAllContactsByName(self.m_Search.text)
+
+        for user in allusers:
+            
+            print(user)
     def update(self):
-        print(self.m_Search.text)
+        #print(self.m_Search.text)
+        resulttext =""
+        allusers = PyContactBook.GetAllContactsByName(self.m_Search.text)
+       
+
+        for user in allusers:
+            print(user)
+            resulttext += "[{}] Name: {}, {} - Adresse: {} - ".format(user[0], user[1], user[2], user[3])
+            self.ids.searchresult.text = resulttext
+
+    
+
+
+            
 
 
 class WindowManager(ScreenManager):

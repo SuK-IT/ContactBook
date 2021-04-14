@@ -114,6 +114,8 @@ WindowManager:
     name: "second"
     
     m_Search: searchquery
+    
+    m_Result: searchresult
 
     GridLayout:
         cols:1
@@ -129,9 +131,15 @@ WindowManager:
             multiline: False
             on_text_validate: root.search()
             on_text: root.update()
+        DropDown:
+            text: "DropDown"
+            Label:
+            
+            
 
+        
         Label:
-            #placeholder
+            id: searchresult
         
 
         Button:
@@ -153,5 +161,6 @@ WindowManager:
             size_hint: 0.8, 0.2
             pos_hint: {"x":0.1, "y":0.1}
             #placeholder
+       
 
         
