@@ -15,6 +15,11 @@ from kivy.uix.widget import Widget
 from kivy.properties import ObjectProperty
 from kivy.graphics import Color, Rectangle
 from kivy.uix.recycleview import RecycleView
+from kivy.uix.scrollview import ScrollView
+from kivy.uix.recycleboxlayout import RecycleBoxLayout
+from kivy.uix.behaviors import FocusBehavior
+from kivy.uix.checkbox import CheckBox
+
 import PyContactBook
 
 
@@ -63,8 +68,6 @@ class MyGrid(Screen):
             self.m_Mail.text = ""
             self.m_Street.text = ""
     
-class CustomDropDown(DropDown):
-    pass
 
 class MySearch(Screen):
     m_Search = ObjectProperty(None)
@@ -72,8 +75,11 @@ class MySearch(Screen):
     
     
     
+    def checkbox_clicked(self):
+        pass
 
-    
+    def searchdropdown(self):
+        pass
     
     def search(self):
         
@@ -90,7 +96,7 @@ class MySearch(Screen):
 
         for user in allusers:
             print(user)
-            resulttext += "[{}] Name: {}, {} - Adresse: {} - ".format(user[0], user[1], user[2], user[3])
+            resulttext += "Kontaktnr: [{}] Name: {}, {} - Adresse: {} - Tel: {} - Mail: {}\r\n".format(user[0], user[1], user[2], user[3], user[4], user[5])
             self.ids.searchresult.text = resulttext
 
     

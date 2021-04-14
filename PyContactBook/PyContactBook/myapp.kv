@@ -125,27 +125,42 @@ WindowManager:
 
         TextInput:
             id: searchquery
+            
             size_hint: 0.8, 0.4
             pos_hint: {"x":0.1, "y":0.1}
             write_tab: False
             multiline: False
             on_text_validate: root.search()
             on_text: root.update()
-        #DropDown:
             
+            #DropDown:
+                #id: dropdown
             
-            #Label:
-                #text: "DropDowntest"
-                #size_hint: 0.8, 0.4
-                #pos_hint: {"x":0.1, "y":0.1}
-            #Label:
-                #text: "DropDowntest"
+                #Label:
+                    #text: "DropDowntest"
+                    #size_hint: 0.8, 0.4
+                    #pos_hint: {"x":0.1, "y":0.1}
+                #Label:
+                    #text: "DropDowntest"
             
             
 
         
-        Label:
-            id: searchresult
+        RecycleView:
+            
+            Label:
+                id: searchresult
+                text: "Ergebnisse"
+                GridLayout:
+                    cols:1
+
+                    Label:
+                    
+                        text: "Ergebnis 1"
+                    CheckBox:
+                        group: "Results"
+                        on_active: root.checkbox_clicked()
+                
         
 
         Button:
