@@ -92,12 +92,21 @@ class MySearch(Screen):
         #print(self.m_Search.text)
         resulttext =""
         allusers = PyContactBook.GetAllContactsByName(self.m_Search.text)
+        RV.rv(self)
        
 
         for user in allusers:
             print(user)
             resulttext += "Kontaktnr: [{}] Name: {}, {} - Adresse: {} - Tel: {} - Mail: {}\r\n".format(user[0], user[1], user[2], user[3], user[4], user[5])
             self.ids.searchresult.text = resulttext
+class RV(RecycleView):
+
+    def rv(self):
+        
+        content = ["Hello","This is a string", "another string"]
+        self.data = [{"text":item} for item in content]
+        print(content)
+    
 
     
 

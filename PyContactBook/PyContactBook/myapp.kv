@@ -132,35 +132,14 @@ WindowManager:
             multiline: False
             on_text_validate: root.search()
             on_text: root.update()
+        Label:
+            id: searchresult
             
-            #DropDown:
-                #id: dropdown
-            
-                #Label:
-                    #text: "DropDowntest"
-                    #size_hint: 0.8, 0.4
-                    #pos_hint: {"x":0.1, "y":0.1}
-                #Label:
-                    #text: "DropDowntest"
             
             
 
         
-        RecycleView:
-            
-            Label:
-                id: searchresult
-                text: "Ergebnisse"
-                GridLayout:
-                    cols:1
-
-                    Label:
-                    
-                        text: "Ergebnis 1"
-                    CheckBox:
-                        group: "Results"
-                        on_active: root.checkbox_clicked()
-                
+        
         
 
         Button:
@@ -185,3 +164,11 @@ WindowManager:
        
 
         
+<RV>:
+    RecycleView:
+        data: []
+        viewclass: 'MyButton'
+        RecycleBoxLayout:
+            default_size_hint: 1, None
+            orientation: 'vertical'
+                
